@@ -129,4 +129,4 @@ npm run sweep   # drives every module's modals, filters and actions (customise, 
                 # scholarships, payments/receipt, exams sign-off, notices, courses, workflow reject, settings)
 ```
 
-Both are wired into `npm run verify`.
+`npm run style` adds a dark-mode/token/₹-grouping/date-format/accessible-name audit on top. All three suites are wired into `npm run verify`.

@@ -540,7 +540,7 @@ function RecordPaymentModal({
           </div>
         )}
         <Field label="Amount (₹)" required error={errors.amount}>
-          <Input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} className="mono" />
+          <Input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} className="mono tabular-nums" />
         </Field>
         <Field label="Payment mode" required>
           <Select value={mode} onChange={(e) => setMode(e.target.value as PaymentMode)}>
@@ -548,7 +548,7 @@ function RecordPaymentModal({
           </Select>
         </Field>
         <Field label="UTR / reference number" required error={errors.utr} hint="Bank transaction reference (min 8 characters)">
-          <Input value={utr} onChange={(e) => { setUtr(e.target.value.toUpperCase()); setErrors({}); }} placeholder="UTR202600123456" className="mono" />
+          <Input value={utr} onChange={(e) => { setUtr(e.target.value.toUpperCase()); setErrors({}); }} placeholder="UTR202600123456" className="mono uppercase" />
         </Field>
         <Field label="Payment date" required>
           <Input type="date" value={date} max={todayISO()} onChange={(e) => setDate(e.target.value)} />
