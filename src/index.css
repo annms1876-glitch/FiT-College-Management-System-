@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Vanguard design tokens
+   Values are stored as RGB triplets so Tailwind can apply alpha modifiers.
+   --------------------------------------------------------------------------- */
+:root {
+  --surface: 255 255 255;
+  --surface-low: 249 250 251;
+  --surface-container: 243 244 246;
+  --surface-high: 234 236 239;
+  --ink: 27 27 36;
+  --muted: 75 85 99;
+  --line: 229 231 235;
+  --primary: 53 37 205;
+  --primary-fg: 255 255 255;
+  --primary-container: 79 70 229;
+  --primary-tint: 238 242 255;
+  --primary-tint-fg: 49 46 129;
+  --success: 21 128 61;
+  --success-soft: 220 252 231;
+  --warning: 180 83 9;
+  --warning-soft: 254 243 199;
+  --info: 29 78 216;
+  --info-soft: 219 234 254;
+  --danger: 186 26 26;
+  --danger-soft: 255 218 214;
+  --scrollbar: 203 206 213;
+  color-scheme: light;
+}
+
+.dark {
+  --surface: 23 23 23;
+  --surface-low: 30 30 30;
+  --surface-container: 33 33 33;
+  --surface-high: 42 42 42;
+  --ink: 236 236 236;
+  --muted: 161 161 170;
+  --line: 46 46 50;
+  --primary: 195 192 255;
+  --primary-fg: 29 0 165;
+  --primary-container: 124 110 246;
+  --primary-tint: 35 32 74;
+  --primary-tint-fg: 224 231 255;
+  --success: 134 239 172;
+  --success-soft: 22 51 35;
+  --warning: 252 211 77;
+  --warning-soft: 58 42 14;
+  --info: 147 197 253;
+  --info-soft: 23 42 74;
+  --danger: 255 180 171;
+  --danger-soft: 66 26 26;
+  --scrollbar: 68 68 74;
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: rgb(var(--line));
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-surface-low font-sans text-base text-ink antialiased;
+    font-feature-settings: 'ss01' on, 'cv11' on;
+  }
+
+  ::selection {
+    background: rgb(var(--primary) / 0.22);
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary) / 0.75);
+    outline-offset: 2px;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  input[type='search']::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--scrollbar) / 0.8);
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--scrollbar));
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-surface;
+  }
+
+  .hairline {
+    @apply border border-line;
+  }
+
+  .sidebar-label {
+    @apply whitespace-nowrap transition-opacity duration-150;
+  }
+
+  .sidebar-collapsed .sidebar-label {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .table-th {
+    @apply whitespace-nowrap px-4 py-2.5 text-left text-2xs font-semibold uppercase tracking-[0.08em] text-muted;
+  }
+
+  .table-td {
+    @apply whitespace-nowrap px-4 py-3 text-sm text-ink;
+  }
+
+  .row-hover {
+    @apply transition-colors duration-150 hover:bg-surface-low;
+  }
+
+  .field-input {
+    @apply h-9 w-full rounded-md border border-line bg-surface px-3 text-sm text-ink placeholder:text-muted/60 transition-colors duration-150 hover:border-ink/20 focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/15 disabled:cursor-not-allowed disabled:bg-surface-low disabled:text-muted;
+  }
+
+  .mono {
+    @apply font-mono tabular-nums tracking-tight;
+  }
+
+  .label-text {
+    @apply mb-1.5 flex items-center gap-1.5 text-xs font-medium text-muted;
+  }
+
+  .nav-item {
+    @apply relative flex h-9 w-full items-center gap-3 rounded-lg px-3 text-left text-sm font-medium text-muted transition-colors duration-120 hover:bg-surface-container hover:text-ink;
+  }
+
+  .nav-item-active {
+    @apply bg-primary-tint text-primary-tint-fg hover:bg-primary-tint hover:text-primary-tint-fg;
+  }
+
+  .btn {
+    @apply inline-flex h-9 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-md px-3 text-sm font-semibold transition-all duration-120 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .skeleton {
+    @apply animate-pulse rounded-md bg-surface-container;
+  }
+
+  .scroll-thin {
+    scrollbar-width: thin;
+  }
+
+  .sticky-bar {
+    @apply sticky bottom-0 z-20 border-t border-line bg-surface/95 backdrop-blur;
+  }
+}
+
+/* Remove native number input spinners in metrics-heavy forms */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+}

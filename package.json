@@ -1,0 +1,36 @@
+{
+  "name": "vanguard-institute-portal",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Vanguard Institute of Technology, Pune \u2014 AI-powered College Administration Portal (AY 2026-27)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "typecheck": "tsc --noEmit",
+    "smoke": "node scripts/smoke.mjs",
+    "sweep": "node scripts/sweep.mjs",
+    "verify": "npm run typecheck && npm run smoke && npm run sweep && npm run build"
+  },
+  "dependencies": {
+    "@fontsource/instrument-sans": "^5.3.0",
+    "@fontsource/mulish": "^5.3.0",
+    "@fontsource/source-code-pro": "^5.3.1",
+    "lucide-react": "^1.79.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "autoprefixer": "^10.7.0",
+    "jsdom": "^26.1.0",
+    "postcss": "^8.5.33",
+    "tailwindcss": "^3.4.19",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.8"
+  }
+}
